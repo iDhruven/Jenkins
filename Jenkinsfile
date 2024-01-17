@@ -4,8 +4,9 @@ pipeline {
     stages {
         stage ('Generate Job') {
             steps {
-                dsl {
-                    import DSL_2.groovy
+                script {
+                    def dslScript = readFileFromWorkspace('DSL_2.groovy')
+                    dsl(dslScript)
                 }
             }
         }
