@@ -2,7 +2,7 @@ def gitRepoURL = 'https://github.com/iDhruven/Jenkins'
 def gitCredentialsId = 'ac98bbd7-38fc-4a1f-8339-ddc65c6716a2'
 
 
-jobDsl('Superman_Pipeline') {
+pipelineJob('Superman_Pipeline') {
     definition {
         cpsScm {
             scm {
@@ -22,6 +22,7 @@ jobDsl('Superman_Pipeline') {
                 lightweight(true)
             }
 
+            /*
             triggers {
                 genericTrigger {
                     genericVariables {
@@ -37,6 +38,24 @@ jobDsl('Superman_Pipeline') {
                     printContributedVariables(true)
                     causeString('Generic Cause')
                 }
+            }
+            */
+        }
+
+        triggers {
+            genericTrigger {
+                genericVariables {
+                    genericVariable {
+                        key('branchName')
+                        expressionType('JSONPath')
+                        value('')
+                        defaultValue('main')
+                    }
+                }
+                token('abc123')
+                printPostContent(true)
+                printContributedVariables(true)
+                causeString('Generic Cause')
             }
         }
     }
