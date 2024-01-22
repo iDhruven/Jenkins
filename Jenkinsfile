@@ -6,8 +6,7 @@ pipeline {
             steps {
                 script {
                     def dslScript = load 'DSL_2.groovy'
-                    def closure = dslScript.buildGroovy()
-                    closure()
+                    dslScript()
                 }
             }
         }
