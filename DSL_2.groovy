@@ -43,3 +43,4 @@ def generateJob() {
         }
     }
 }
+generateJob()
