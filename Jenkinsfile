@@ -7,7 +7,7 @@ pipeline {
                 script {
                     //def dslScript = load 'DSL_2.groovy'
                     def dslScript = load 'DSL_new.groovy'
-                    dslScript.generateJob(branchName)
+                    dslScript.generateJob()
                 }
             }
         }
