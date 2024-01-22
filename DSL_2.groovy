@@ -43,4 +43,3 @@ def generateJob() {
         }
     }
 }
-generateJob()
