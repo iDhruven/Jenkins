@@ -1,4 +1,4 @@
-from job_dsl import JenkinsJob
+from gocept.jenkinsdsl import JenkinsJob
 
 gitRepoURL = "https://github.com/iDhruven/Jenkins"
 gitCredentialsId = "ac98bbd7-38fc-4a1f-8339-ddc65c6716a2"
