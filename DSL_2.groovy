@@ -2,6 +2,7 @@ def gitRepoURL = 'https://github.com/iDhruven/Jenkins'
 def gitCredentialsId = 'ac98bbd7-38fc-4a1f-8339-ddc65c6716a2'
 
 def generateJob() {
+    echo 'Generating job...'
     pipelineJob('Superman_Pipeline') {
         definition {
             cpsScm {
