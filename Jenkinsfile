@@ -7,6 +7,7 @@ pipeline {
                 script {
                     //def dslScript = load 'DSL_2.groovy'
                     def dslScript = load 'DSL_new.groovy'
+                    import DSL_new.groovy
                 }
             }
         }
