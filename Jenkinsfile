@@ -5,8 +5,9 @@ pipeline {
         stage ('Generate Job') {
             steps {
                 script {
-                    def dslScript = load 'DSL_2.groovy'
-                    dslScript()
+                    sh "python3 DSL.py"
+                    //def dslScript = load 'DSL_2.groovy'
+                    //dslScript()
                 }
             }
         }
