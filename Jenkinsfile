@@ -5,7 +5,7 @@ pipeline {
         stage ('Generate Job') {
             steps {
                 script {
-                    sh "pip3 install job_dsl"
+                    sh "pip3 install gocept.jenkinsdsl"
                     sh "python3 DSL.py"
                     //def dslScript = load 'DSL_2.groovy'
                     //dslScript()
