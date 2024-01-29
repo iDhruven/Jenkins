@@ -2,47 +2,34 @@ def gitRepoURL = 'https://ghe.megaleo.com/Dhruven-Shah/Jenkins'
 def gitCredentialsId = 'GitHub'
 
 def generateJob() {
-    pipelineJob('Superman_Pipeline') {
-        definition {
-            cpsScm {
-                scm {
-                    git {
-                        remote {
-                            url(gitRepoURL)
-                            credentials(gitCredentialsId)
-                        }
-                        branch('${branchName}')
-                        browser {
-                            githubWeb {
-                                repoUrl(gitRepoURL)
-                            }
-                        }
+    pipeline {
+        agent any
+        options {
+            buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))
+        }
+
+        // Specify a custom name for your Jenkins job
+        displayName 'Superman_Pipeline'
+
+        stages {
+            stage('Build') {
+                steps {
+                    script {
+                        checkout([$class: 'GitSCM', branches: [[name: '${branchName}']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SubmoduleOption', disableSubmodules: false, parentCredentials: true, recursiveSubmodules: true, reference: '', trackingSubmodules: true]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: gitCredentialsId, url: gitRepoURL]]])
+                        load 'Jenkinsfile'
                     }
-                    scriptPath('Jenkinsfile')
-                    lightweight(true)
                 }
             }
         }
 
         parameters {
-            stringParam('branchName', '', 'main')
+            string(name: 'branchName', defaultValue: 'main', description: 'Branch to build')
         }
 
         triggers {
             cron('H/5 * * * *') // Adjust this cron expression accordingly
         }
-
-        configure { project ->
-            project / 'triggers' << 'hudson.triggers.SCMTrigger' {
-                spec('H/5 * * * *') // Adjust this spec accordingly
-                ignorePostCommitHooks(false)
-            }
-
-            project / 'triggers' << 'org.jenkinsci.plugins.remotebuild.RemoteBuildTrigger' {
-                buildToken('abc123') // Replace with your generated token
-            }
-        }
     }
 }
-generateJob()
 
+generateJob()
