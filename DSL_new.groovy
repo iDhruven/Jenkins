@@ -4,9 +4,9 @@ def gitCredentialsId = 'GitHub'
 def generateJob() {
     pipeline {
         //agent any
-        options {
-            buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))
-        }
+        //options {
+        //    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))
+        //}
 
         // Specify a custom name for your Jenkins job
         displayName 'Superman_Pipeline'
