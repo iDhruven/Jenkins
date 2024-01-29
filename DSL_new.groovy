@@ -9,7 +9,7 @@ def generateJob() {
         //}
 
         // Specify a custom name for your Jenkins job
-        displayName 'Superman_Pipeline'
+        //displayName 'Superman_Pipeline'
 
         stages {
             stage('Build') {
