@@ -3,7 +3,7 @@ def gitCredentialsId = 'GitHub'
 
 def generateJob() {
     pipeline {
-        agent any
+        //agent any
         options {
             buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))
         }
